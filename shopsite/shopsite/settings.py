@@ -73,12 +73,24 @@ WSGI_APPLICATION = 'shopsite.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
-
+#配置msql,使用驱动mysql-connector-python
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    # }
+
+    'default':{
+        'NAME': 'shopsys',
+        #'ENGINE': 'mysql.connector.django',
+        'ENGINE': 'django.db.backends.mysql',
+        'USER': 'shopsys',
+        'PASSWORD': 'shopsys',
+        'HOST':'120.25.102.253',
+        'POST':'3306',
+        'TEST':{}
     }
+
 }
 
 
@@ -105,15 +117,17 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/1.9/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
-
-TIME_ZONE = 'UTC'
-
-USE_I18N = True
-
-USE_L10N = True
+DATE_FORMAT = 'Y-m-d'
+TIME_ZONE = 'Asia/Shanghai'
+# 是否开启国际化支持，不开启时可以不加载翻译模块优化性能
+USE_I18N = False
+# 本地化格式支持，为True使用系统locale设置显示数字、时间等格式
+USE_L10N = False
 
 USE_TZ = True
 
+# 是否设置Etag, 设置etag可以降低网络资源开销，但会增加服务器性能开销
+USE_ETAGS = False
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
