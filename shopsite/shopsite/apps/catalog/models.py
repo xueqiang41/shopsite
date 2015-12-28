@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.urlresolvers import reverse
 
 # Create your models here.
 
@@ -22,6 +23,7 @@ class Category(models.Model):
 
     def get_absolute_url(self):
         return reverse('catelog_category',args=(self.slug,))
+        # catelog_category/slug
 
 
 class Product(models.Model):
@@ -52,7 +54,7 @@ class Product(models.Model):
         return self.name
     
     def get_absolute_url(self):
-        return reverse('catelog_category',args=(self.slug,))
+        return reverse('catelog_product',args=(self.slug,))
 
     def sale_price(self):
         if self.old_price > self.price:
